@@ -30,16 +30,6 @@ class Block:
         return (str(self.transaction.merchant_signature) + str(self.block_seq_number) + str(self.previous_hash)).encode('utf-8')
 
     def calculate_hash(self) -> bytes:
-        #if self.block_seq_number == 0:
-        #    return hashlib.sha256("0000000".encode('utf-8')).digest()
-        #else:
-        #    return hashlib.sha256((str(self.transaction.customer_public_key) + str(self.transaction.merchant_public_key) + str(self.transaction.date) + str(self.transaction.amount) + str(self.transaction.customer_signature) + str(self.transaction.merchant_signature) + str(self.block_seq_number)).encode('utf-8')).digest()
-        
-        #if self.block_seq_number == 0:
-        #    return hashlib.sha256(self.nonce.tobytes() + "0000000".encode('utf-8')).digest()
-        #else:
-        #    return hashlib.sha256((self.nonce.tobytes() + (str(self.transaction.customer_public_key) + str(self.transaction.merchant_public_key) + str(self.transaction.date) + str(self.transaction.amount) + str(self.transaction.customer_signature) + str(self.transaction.merchant_signature) + str(self.block_seq_number)).encode('utf-8'))).digest()
-        
         curr_hash = b''
         start_time = time.time()
 
