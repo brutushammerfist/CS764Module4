@@ -11,13 +11,15 @@ class MinerNode:
 
     public_key: str
     private_key: str
+    difficulty: int
 
-    def __init__(self):
-        self.blockchain = Blockchain()
+    def __init__(self, difficulty):
+        self.blockchain = Blockchain(difficulty)
 
         (pub, priv) = rsa.newkeys(512)
         self.public_key = pub
         self.private_key = priv
+        self.difficulty = difficulty
 
     def sign(self, block: Block):
         block.miner_signature = rsa.sign(block.miner_signature_bytes(), self.private_key, 'SHA-256')
@@ -44,3 +46,6 @@ class MinerNode:
     def print_merchant_two(self, merchant_two: Merchant):
         print("Print Merchant 2 Transactions:")
         self.blockchain.print_merchant_two(merchant_two)
+
+    def output_to_file(self, filename: str):
+        self.blockchain.output_to_file(filename)

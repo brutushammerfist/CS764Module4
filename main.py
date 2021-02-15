@@ -18,7 +18,7 @@ def generate_datestring(date: datetime.date):
 
     return datestring_month + datestring_day + str(date.year)
 
-def generate_transaction(customers: list, merchants: list, miner: MinerNode, curr_date: datetime.date):
+def generate_transaction(customers: list, merchants: list, miner: MinerNode, curr_date: datetime.date) -> datetime.date:
     customer_id = random.randint(0, 4)
     merchant_id = random.randint(0, 1)
 
@@ -35,28 +35,56 @@ def generate_transaction(customers: list, merchants: list, miner: MinerNode, cur
 
 
 if __name__ == "__main__":
-    curr_date = datetime.date(2020, 1, 1)
-
     customers = [Customer() for i in range(5)]
     merchants = [Merchant() for i in range(2)]
-    miner = MinerNode()
+    #miner = MinerNode(0)
+
+    #for i in range(0, 25):
+    #    curr_date = generate_transaction(customers, merchants, miner, curr_date)
+
+    #if sys.argv[1] == '0':
+    #    miner.display()
+    #elif sys.argv[1] == '1':
+    #    if miner.is_chain_valid():
+    #        print("The Blockchain has not been tampered with!")
+    #    else:
+    #        print("The Blockchain HAS been tampered with!")
+    #    miner.increment_fifteen()
+    #    if miner.is_chain_valid():
+    #        print("The Blockchain has not been tampered with!")
+    #    else:
+    #        print("The Blockchain HAS been tampered with!")
+    #elif sys.argv[1] == '2':
+    #    miner.print_customer_three(customers[2])
+    #elif sys.argv[1] == '3':
+    #    miner.print_merchant_two(merchants[1])
+
+    #if sys.argv[1] == '0':
+    #    pass
+    #elif sys.argv[1] == '1':
+    #    pass
+    #elif sys.argv[1] == '2':
+    #    pass
+
+    miner_a = MinerNode(0)
+    miner_b = MinerNode(5)
+    miner_c = MinerNode(10)
+
+    curr_date = datetime.date(2020, 1, 1)
 
     for i in range(0, 25):
-        curr_date = generate_transaction(customers, merchants, miner, curr_date)
+        curr_date = generate_transaction(customers, merchants, miner_a, curr_date)
 
-    if sys.argv[1] == '0':
-        miner.display()
-    elif sys.argv[1] == '1':
-        if miner.is_chain_valid():
-            print("The Blockchain has not been tampered with!")
-        else:
-            print("The Blockchain HAS been tampered with!")
-        miner.increment_fifteen()
-        if miner.is_chain_valid():
-            print("The Blockchain has not been tampered with!")
-        else:
-            print("The Blockchain HAS been tampered with!")
-    elif sys.argv[1] == '2':
-        miner.print_customer_three(customers[2])
-    elif sys.argv[1] == '3':
-        miner.print_merchant_two(merchants[1])
+    curr_date = datetime.date(2020, 1, 1)
+
+    for i in range(0, 25):
+        curr_date = generate_transaction(customers, merchants, miner_b, curr_date)
+
+    curr_date = datetime.date(2020, 1, 1)
+
+    for i in range(0, 25):
+        curr_date = generate_transaction(customers, merchants, miner_c, curr_date)
+
+    miner_a.output_to_file("a.csv")
+    miner_b.output_to_file("b.csv")
+    miner_c.output_to_file("c.csv")
